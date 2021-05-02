@@ -613,7 +613,10 @@ def mostrar_transportes():
         print('Estado:', vehiculo[8])
     return transporte_por_empresas()
 
-#
+#Nombre: gestion de viaje
+#Entradas: Ingresa una de las opciones que se presentan en el menú
+#Salidas: Una de las dunciones seleccionadassegún el menú, ya sea, incluir viajes, eliminar viajes, modificar viajes o mostrar viajes.
+#Restrcciones: Solo se permite ingresar de las opciones que se muestran en el menú.
 def gestión_de_viaje() :
     print("""
         Gestiòn de viajes
@@ -637,27 +640,369 @@ def gestión_de_viaje() :
         print('\nPor favor, introduzca una opcion válida\n')
         return gestión_de_viaje()
 
+#Nombre: Incluir viajes
+#Sirve para incluir viajes en la carpeta viajes.txt y así guardarlos para manipular su información en otras opciones.
 def incluir_viajes() :
-    numeroViaje = verificar_numero_de_viaje()
     ciudadSalida = str(input('Introduzca la ciudad de salida: '))
     ciudadLlegada = str(input('Introduzca la ciudad de llegada: '))
     añoSalida = str(input('Introduzca el año de salida: '))
     if comprobador_entero(añoSalida, 0) == 2 :
-        if cuenta_caracteres(añoSalida, 0) <= 4 :
+        if cuenta_caracteres(añoSalida, 0) == 4 :
             mesSalida = str(input('Introduzca el mes de salida: '))
             if comprobador_entero(mesSalida, 0) == 2 :
-                if int(mesSalida) =< 12 and int(mesSalida) > 0 :
+                if int(mesSalida) <= 12 and int(mesSalida) > 0 :
                     diaSalida = str(input('Introduzca el día de salida: '))
                     if comprobador_entero(diaSalida, 0) == 2 :
-                        if int(diaSalida) =< 31 and int(diaSalida) > 0 :
-                            horasalida = str(input('Introduzca la hora de salida (Formato 24 horas): '))
-                            if comprobador_entero(diaSalida, 0) == 2 :
-                                if int(diaSalida) =< 23 and int(diaSalida) >= 0 :
+                        if int(diaSalida) <= 31 and int(diaSalida) > 0 :
+                            horaSalida = str(input('Introduzca la hora de salida (Formato 24 horas): '))
+                            if comprobador_entero(horaSalida, 0) == 2 :
+                                if int(horaSalida) <= 23 and int(horaSalida) >= 0 :
                                     minutoSalida = str(input('Introduzca el minuto de salida: '))
-                                    if comprobador_entero(diaSalida, 0) == 2 :
-                                        if int(diaSalida) =< 59 and int(diaSalida) >= 0 :
-                                            añoLlegada
-                                            mesLlegada
-                                            diaLlegada
-                                            horaLlegada
-                                            minutoLlegada
+                                    if comprobador_entero(minutoSalida, 0) == 2 :
+                                        if int(minutoSalida) <= 59 and int(minutoSalida) >= 0 :
+                                            añoLlegada = str(input('Introduzca el año de llegada: '))#A partir de aqui empienza la fecha de salida
+                                            if comprobador_entero(añoLlegada, 0) == 2 :
+                                                if cuenta_caracteres(añoLlegada, 0) == 4 :
+                                                    mesLlegada = str(input('Introduzca el mes de llegada: '))
+                                                    if comprobador_entero(mesLlegada, 0) == 2 :
+                                                        if int(mesLlegada) <= 12 and int(mesLlegada) > 0 :
+                                                            diaLlegada = str(input('Introduzca el día de llegada: '))
+                                                            if comprobador_entero(diaLlegada, 0) == 2 :
+                                                                if int(diaLlegada) <= 31 and int(diaLlegada) > 0 :
+                                                                    horaLlegada = str(input('Introduzca la hora de llegada (Formato 24 horas): '))
+                                                                    if comprobador_entero(horaLlegada, 0) == 2 :
+                                                                        if int(horaLlegada) <= 23 and int(horaLlegada) >= 0 :
+                                                                            minutoLlegada = str(input('Introduzca el minuto de llegada: '))
+                                                                            if comprobador_entero(minutoSalida, 0) == 2 :
+                                                                                if int(minutoSalida) <= 59 and int(minutoSalida) >= 0 :
+                                                                                    montoVIP = str(input('Ingrese el monto del asiento VIP: '))
+                                                                                    if comprobador_entero(montoVIP, 0) == 2 :
+                                                                                        montoNormal = str(input('Ingrese el monto del asiento normal: '))
+                                                                                        if comprobador_entero(montoNormal, 0) == 2 :
+                                                                                            montoEconomico = str(input('Introduzca el monto económico: '))
+                                                                                            if comprobador_entero(montoEconomico, 0) == 2 :
+                                                                                                empresa = str(input('Ingrese la cédula jurídica de la empresa que realiza el viaje: '))
+                                                                                                if comprobador_entero(empresa, 0) == 2 :
+                                                                                                    if cuenta_caracteres(empresa, 0) == 10 :
+                                                                                                        if comprobar_existencia_empresa(empresa) :
+                                                                                                            vehiculo = str(input('Ingrese la placa del vehículo que desea usar: '))
+                                                                                                            if cuenta_caracteres(vehiculo, 0) == 6 :
+                                                                                                                if comprobar_existencia_placa_eliminar(vehiculo) :
+                                                                                                                    if comprobar_reservacion_de_vehiculo(vehiculo) :
+                                                                                                                        from datetime import datetime
+                                                                                                                        fecha1 = datetime(int(añoSalida), int(mesSalida), int(diaSalida), int(horaSalida),
+                                                                                                                                          int(minutoSalida))
+                                                                                                                        fecha2 = datetime(int(añoLlegada), int(mesLlegada), int(diaLlegada),
+                                                                                                                                          int(horaLlegada), int(minutoLlegada))
+                                                                                                                        if fecha2 > fecha1 :
+                                                                                                                            numeroViaje = verificar_numero_de_viaje()
+                                                                                                                            informacionViaje = (numeroViaje + ';' + ciudadSalida + ';' + ciudadLlegada +
+                                                                                                                                                ';' + añoSalida + ';' + mesSalida + ';' + diaSalida + ';'
+                                                                                                                                                + horaSalida + ';' + minutoSalida + ';' + añoLlegada + ';'
+                                                                                                                                                + mesLlegada + ';' + diaLlegada + ';' + horaLlegada + ';'
+                                                                                                                                                + minutoLlegada + ';' + empresa + ';' + vehiculo + ';'
+                                                                                                                                                + montoVIP + ';' + montoNormal + ';' +
+                                                                                                                                                montoEconomico + '\n')
+                                                                                                                            registrarViaje = open('viajes.txt', 'a')
+                                                                                                                            registrarViaje.write(informacionViaje)
+                                                                                                                            registrarViaje.close()
+                                                                                                                            print('Se ha añadido el viaje #',numeroViaje)
+                                                                                                                            reservar_vehiculo(vehiculo)
+                                                                                                                            return gestión_de_viaje()
+                                                                                                                        else :
+                                                                                                                            print('\nLa fecha de llegada no puede ser menor que la fecha de salida')
+                                                                                                                            return gestión_de_viaje()
+                                                                                                                    else :
+                                                                                                                        print('El vehículo no se puede usar, debido a que se encuentra reservado para otro viaje')
+                                                                                                                        return gestión_de_viaje()
+                                                                                                                else :
+                                                                                                                    print('La placa ingresada no posee coincidencias')
+                                                                                                                    return gestión_de_viaje()
+                                                                                                            else :
+                                                                                                                print('La placa del vehículo debe tener seis dígitos')
+                                                                                                                return gestión_de_viaje()
+                                                                                                        else :
+                                                                                                            print('La jurídica ingresada no posee coincidencias')
+                                                                                                            return gestión_de_viaje()
+                                                                                                    else :
+                                                                                                        print('La cédula jurídica debe ser de seis dígitos')
+                                                                                                        return gestión_de_viaje()
+                                                                                                else :
+                                                                                                    print('La cedula jurídica deben de ser números')
+                                                                                                    return gestión_de_viaje()
+                                                                                            else :
+                                                                                                print('El precio económico debe de ser números')
+                                                                                                return gestión_de_viaje()
+                                                                                        else :
+                                                                                            print('El precio normal debe de ser números')
+                                                                                            return gestión_de_viaje()
+                                                                                    else :
+                                                                                        print('El precio VIP debe de ser números')
+                                                                                        return gestión_de_viaje()
+                                                                                else :
+                                                                                    print('Los minutos de llegada deben ser mayores o iguales que cero y menores o iguales que cincuenta y nueve')
+                                                                                    return gestión_de_viaje()
+                                                                            else :
+                                                                                print('Los minutos deben de ser números')
+                                                                                return gestión_de_viaje()
+                                                                        else :
+                                                                            print('La hora de llegada debe ser mayor o igual que cero y menor o igual que veinti tres')
+                                                                            return gestión_de_viaje()
+                                                                    else :
+                                                                        print('La hora deben de ser numeros')
+                                                                        return gestión_de_viaje()
+                                                                else :
+                                                                    print('El dia de llegada debe de ser mayor que cero y menor o igual que treinta y uno')
+                                                                    return gestión_de_viaje()
+                                                            else :
+                                                                print('El dia de llegada debe ser un número entero')
+                                                                return gestión_de_viaje()
+                                                        else :
+                                                            print('El mes de llegada debe ser mayor que cero y menor o igual que 12')
+                                                            return gestión_de_viaje()
+                                                    else :
+                                                        print('El mes de llegada debe ser un número')
+                                                        return gestión_de_viaje()
+                                                else :
+                                                    print('El año de llegada debe tener cuatro dígitos')
+                                                    return gestión_de_viaje()
+                                            else :
+                                                print('El año de llegada debe ser un número')
+                                                return gestión_de_viaje()
+                                        else :
+                                            print('Los minutos de salida deben ser mayores o iguales que cero y menores o iguales que cincuenta y nueve')
+                                            return gestión_de_viaje()
+                                    else :
+                                        print('Los minutos de salida deben de ser números')
+                                        return gestión_de_viaje()
+                                else :
+                                    print('La hora de salida debe ser mayor o igual que cero y menor o igual que veinti tres')
+                                    return gestión_de_viaje()
+                            else :
+                                print('La hora deben de ser numeros')
+                                return gestión_de_viaje()
+                        else :
+                            print('El dia de salida debe de ser mayor que cero y menor o igual que treinta y uno')
+                            return gestión_de_viaje()
+                    else :
+                        print('El dia de salida debe ser un número entero')
+                        return gestión_de_viaje()
+                else :
+                    print('El mes de salida debe ser mayor que cero y menor o igual que 12')
+                    return gestión_de_viaje()
+            else :
+                print('El mes de salida debe ser un número')
+                return gestión_de_viaje()
+        else :
+            print('El año de salida debe tener cuatro dígitos')
+            return gestión_de_viaje()
+    else :
+        print('El año de salida debe ser un numero')
+
+def verificar_numero_de_viaje() :
+    numeroViaje = open('numeroViaje.txt', 'r')
+    numero = numeroViaje.read()
+    numeroViaje.close()
+    numeroViajeActual = int(numero) + 1
+    guardarNumero = open('numeroViaje.txt', 'w')
+    guardarNumero.write(str(numeroViajeActual))
+    guardarNumero.close()
+    return str(numeroViajeActual)
+
+def comprobar_reservacion_de_vehiculo(placa) :
+    informacion = open('vehiculos.txt', 'r')
+    for vehiculo in informacion.readlines() :
+        vehiculo = vehiculo.split(';')
+        informacion.close()
+        if vehiculo[0] == placa :
+            if vehiculo[8] == 'reservado\n' :
+                return False
+            else :
+                vehiculo
+        else :
+            vehiculo
+    return True
+
+def reservar_inactivar_vehiculo(placa) :
+    contador = 0
+    informacion = open('vehiculos.txt', 'r')
+    for vehiculo in informacion.readlines() :
+        vehiculoAux = vehiculo.split(';')
+        informacion.close()
+        if vehiculoAux[0] == placa :
+            if vehiculoAux[8] == 'reservado\n' :
+                vehiculoAux[8] = 'inactivo\n'
+                vehiculoReservado = (vehiculoAux[0] + ';' + vehiculoAux[1] + ';' + vehiculoAux[2] + ';' + vehiculoAux[3] + ';' + vehiculoAux[4] + ';' + vehiculoAux[5] + ';' + vehiculoAux[6]
+                                 + ';' + vehiculoAux[7] + ';' + vehiculoAux[8])
+                if contador == 0 :
+                    contador += 1
+                    escribir_texto_vehiculo(vehiculoReservado)
+                else :
+                    anadir_texto_vehiculo(vehiculoReservado)
+
+            else :
+                vehiculoAux[8] = 'reservado\n'
+                vehiculoReservado = (vehiculoAux[0] + ';' + vehiculoAux[1] + ';' + vehiculoAux[2] + ';' + vehiculoAux[3] + ';' + vehiculoAux[4] + ';' + vehiculoAux[5] + ';' + vehiculoAux[6]
+                                     + ';' + vehiculoAux[7] + ';' + vehiculoAux[8])
+                if contador == 0 :
+                    contador += 1
+                    escribir_texto_vehiculo(vehiculoReservado)
+                else :
+                    anadir_texto_vehiculo(vehiculoReservado)
+        else :
+            if contador == 0 :
+                contador += 1
+                escribir_texto_vehiculo(vehiculo)
+            else :
+                anadir_texto_vehiculo(vehiculo)
+
+#Nombre: eliminar viajes
+#Entradas: introduce el numero de viaje
+#Salidas: Elimina del sistema el viaje, liberando el vehiculo que estaba.
+def eliminar_viajes() :
+    numeroViaje = str(input('Itroduzca el número de viaje que desea eliminar: '))
+    if comprobador_entero(numeroViaje, 0) == 2 :
+        contador = 0
+        coincidencias = 0
+        registrarViaje = open('viajes.txt', 'r')
+        for informacion in registrarViaje.readlines() :
+            informacionAux = informacion.split(';')
+            registrarViaje.close()
+            if informacionAux[0] == numeroViaje :
+                coincidencias += 1
+                reservar_inactivar_vehiculo(informacionAux[14])
+                print('El viaje ha sido eliminado')
+            else :
+                if contador == 0 :
+                    contador += 1
+                    escribir_viaje(informacion)
+                else :
+                    anadir_viaje(informacion)
+        if coincidencias == 0 :
+            print('No se han encontrado coincidencias')
+            return gestión_de_viaje()
+        else :
+            return gestión_de_viaje()
+    else :
+        print('Debe introducir un NUMERO de viaje')
+
+def escribir_viaje(informacion) :
+    viaje = open('viajes.txt', 'w')
+    viaje.write(informacion)
+    viaje.close()
+
+def anadir_viaje(informacion) :
+    viaje = open('viajes.txt', 'a')
+    viaje.write(informacion)
+    viaje.close()
+
+#
+def modificar_viaje() :
+    numeroViaje = str(input('Ingrese el número de viaje que desea modificar: '))
+    if comprobador_entero(numeroViaje, 0) == 2 :
+        contador = 0
+        coincidencias = 0
+        viaje = open('viajes.txt', 'r')
+        for informacion in viaje.readlines() :
+            informacionAux = informacion.split(';')
+            viaje.close()
+            if informacionAux[0] == numeroViaje :
+                nuevaInformacion = modificando_viaje(informacionAux, informacion)
+                if contador == 0 :
+                    coincidencias += 1
+                    escribir_viaje(nuevaInformacion)
+                else :
+                    anadir_viaje(nuevaInformacion)
+            else :
+                if contador == 0 :
+                    coincidencias += 1
+                    escribir_viaje(informacion)
+                else :
+                    anadir_viaje(informacion)
+    if coincidencias == 0 :
+        print('No hay coincidencias')
+        return gestión_de_viaje()
+    else :
+        return gestión_de_viaje()
+
+def modificando_viaje(informacion, informacionOriginal) :
+    print("""
+        Modificando Viaje
+1. Ciudad de salida
+2. Ciudad de llegada
+3. Fecha de salida
+4. Fecha de llegada
+5. Vehículo
+6. Monto VIP
+7. Monto Normal
+8. Monto económico
+9. Guardar
+0. Cancelar""")
+    opcion = str(input('\nIngrese la opción deseada: '))
+    if opcion == '1' :
+        return modificando_viaje(informacion, informacionOriginal)
+    elif opcion == '2' :
+        return modificando_viaje(informacion, informacionOriginal)
+    elif opcion == '3' :
+        return modificando_viaje(informacion, informacionOriginal)
+    elif opcion == 4 :
+        return modificando_viaje(informacion, informacionOriginal)
+    elif opcion == 5 :
+        return modificando_viaje(informacion, informacionOriginal)
+    elif opcion == 6 :
+        return modificando_viaje(informacion, informacionOriginal)
+    elif opcion == 7 :
+        return modificando_viaje(informacion, informacionOriginal)
+    elif opcion == 8 :
+        return modificando_viaje(informacion, informacionOriginal)
+    elif opcion == 9 :
+        nuevaInformacion = (informacion[0] + ';' + informacion[1] + ';' + informacion[2] + ';' + informacion[3] + ';' + informacion[4] + ';' +
+                            informacion[5] + ';' + informacion[6] + ';' + informacion[7] + ';' + informacion[8] + ';' + informacion[9] + ';' +
+                            informacion[10] + ';' + informacion[11] + ';' + informacion[12] + ';' + informacion[13] + ';' + informacion[14] + ';' +
+                            informacion[15] + ';' + informacion[16] + ';' + informacion[17])
+        print('Cambios guardados')
+        return nuevaInformacion
+    elif opcion == 0 :
+        print('Cambios descartados')
+        return informacionOriginal
+    else :
+        print('\nIngrese una opcion valida')
+        return modificando_viaje(informacion, informacionOriginal)
+    
+
+#
+def mostrar_viajes() :
+    contador = 0
+    viajes = open('viajes.txt', 'r')
+    for informacion in viajes.readlines() :
+        informacion = informacion.split(';')
+        if informacion[0] == 'inicio':
+            viajes.close()
+        else :
+            viajes.close()
+            print('Número de viaje:', informacion[0])
+            print('Ciudad de salida:', informacion[1])
+            print('Ciudad de llegada:', informacion[2])
+            print('Fecha de salida:', informacion[5],'/', informacion[4],'/', informacion[3],' ', informacion[6],':', informacion[7])
+            print('Fecha de llegada:', informacion[10],'/', informacion[9],'/', informacion[8],' ', informacion[11],':', informacion[12])
+            print('Empresa:', mostrar_nombre_empresa(informacion[13]))
+            print('Placa del vehículo:', informacion[14])
+            print('Precio asiento VIP:', informacion[15])
+            print('Precio asiento normal', informacion[16])
+            print('Precio asiento económico', informacion[17])
+            contador += 1
+    if contador == 0 :
+        print('No hay viajes registrados')
+        return gestión_de_viaje()
+    else :
+        return gestión_de_viaje()
+
+def mostrar_nombre_empresa(cedula) : #Muestra el nombre de la empresa introduciendo el numero de cedula juridica
+    empresa = open('empresas.txt', 'r')
+    for informacion in empresa.readlines() :
+        informacion = informacion.split(';')
+        empresa.close()
+        if informacion[1] == cedula :
+            return informacion[0]
+        else :
+            None
